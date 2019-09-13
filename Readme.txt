@@ -9,6 +9,7 @@ this is test after create
 tao moi them mot cai nua ne
 this is test ngay 3 from br2
 this is test day2 from br3
+
 bat dau tu day
 day la tesst 2 nhe may  che
 tao khong khong muon noi ndieu naty day 
@@ -23,3 +24,12 @@ sdfas
 fas
 f
 asf
+
+this is tesst 34567
+thaitenvai
+tao khong muon tao dieu nayf dau may a
+
+nhungw tao van muon nhuw the m hieu khong
+tao van hieu may nhu cach ma may da lam voi tao
+nhung tao van muon m xin loi tao nhu moi nguoi 
+
