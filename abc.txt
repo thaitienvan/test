@@ -10,8 +10,16 @@ asf
 asf
 asf
 tao moi tao b2 do nghen con cho
+<<<<<<< HEAD
 b2abc
 b2defd
 b2dfsf
 b2dfdf
 b2dfdf
+=======
+b3dfdf
+b3dfdf
+b3dfdf
+b3dfdf
+b3avd
+>>>>>>> bc8068ef29d2bc794ef39efff09f8bed1174cd34
