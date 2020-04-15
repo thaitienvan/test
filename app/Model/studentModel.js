@@ -25,6 +25,21 @@ Student.getAllStudent = async(limit, offset, result) => {
         }
     });
 };
+Student.studentDetail = async(id, result) => {
+    console.log("model", "student");
+    console.log("get STudentDetail = id ", id);
+    try {
+        await mysql.query(`select * from ${table.STUDENT} where id  ?`, [id], (err, row, fields) => {
+            if (err) {
+                result(err, null);
+            } else {
+                result(null, row[0]);
+            }
+        });
+    } catch (err) {
+        result(null, err);
+    }
+}
 Student.createStudent = (student, result) => {
     student.dob = new Date();
     mysql.query(`insert into ${table.STUDENT} set ?`, student, (err, row) => {

@@ -27,19 +27,29 @@ exports.create_student = (req, res) => {
             res.send({ 'errcocde': 0, 'message': 'Create Successfully!', 'data': students });
         });
     }
+};
+exports.studentdetail = (req, res) => {
+    var id = req.params.id;
+    console.log(id);
+    Student.studentDetail(id, (err, student) => {
+        if (err)
+            return res.send({ 'err': 0, 'message': 'Something error' });
+        else
+            res.json({ 'err': 0, 'message': 'Success full', 'data': student });
+    });
 }
 exports.demo = (req, res) => {
     console.log("Student Demo");
     console.log("token " + req.headers.token);
     console.log("params " + req.params.studentnum);
     res.send({ "err": 200, "Message": "Success full" });
-}
+};
 exports.token = (req, res) => {
     console.log("header");
     var token = req.headers.tokenapi;
     console.log("token " + req.headers.tokenapi);
     res.send({ "err": 200, "Message": "Success fulldfdfdf", "token: ": token });
-}
+};
 const json2Array = function(result, fields) {
     let out = [];
     let temp = [];
