@@ -38,6 +38,14 @@ exports.studentdetail = (req, res) => {
             res.json({ 'err': 0, 'message': 'Success full', 'data': student });
     });
 }
+exports.deleteStudent = (req, res) => {
+    var id = req.params.id;
+    Student.deleteStudent(id, (err, student) => {
+        if (err)
+            return res.json({ err: 9999, 'message': 'Some thing error!' });
+        return res.json({ err: 0, 'message': "Delete successful", data: student });
+    })
+}
 exports.demo = (req, res) => {
     console.log("Student Demo");
     console.log("token " + req.headers.token);

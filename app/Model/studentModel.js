@@ -48,6 +48,18 @@ Student.createStudent = (student, result) => {
         result(null, row);
     });
 }
+Student.deleteStudent = async(id, result) => {
+    await mysql.query(`delete from ${table.STUDENT} where id = ?`, [id], (err, row) => {
+        if (err) {
+            result(err, null);
+        } else
+            result(null, row);
+    });
+}
+
+
+
+
 module.exports = Student;
 
 const json2Array = function(result, fields) {
