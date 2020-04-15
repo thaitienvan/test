@@ -1,0 +1,29 @@
+{
+  "name": "school",
+  "version": "1.0.0",
+  "description": "This is scholl project!",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "author": "thaitien",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "elastic-apm-node": "^3.5.0",
+    "exceljs": "^3.8.1",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "log-to-file": "^2.0.2",
+    "moment": "^2.24.0",
+    "move-file": "^1.2.0",
+    "mysql": "^2.18.1",
+    "node-cron": "^2.0.3",
+    "node-xlsx": "^0.15.0",
+    "pubsub-js": "^1.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

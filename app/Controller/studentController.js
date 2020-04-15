@@ -1,0 +1,57 @@
+var Student = require('../Model/studentModel.js');
+const log = require('log-to-file');
+
+exports.list_all_student = (req, res) => {
+    if (!req.query.limit || !req.query.offset) {
+        req.query.limit = 100;
+        req.query.offset = 0;
+    }
+    Student.getAllStudent(Number(req.query.limit), Number(req.query.offset), (err, students) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send({ "err": 0, "message": "", "data": students });
+        }
+
+    });
+};
+exports.create_student = (req, res) => {
+    let { name, address, phone } = req.body;
+    if (!name || !address || !phone) {
+        res.send({ 'errcocde': 9999, 'message': 'Missing params!', 'data': {} });
+    } else {
+        Student.createStudent(req.body, (err, students) => {
+            if (err)
+                res.send(err);
+            log(`Student Request ${JSON.stringify(req.body)} - Student Response ${JSON.stringify(students)}`, './log/my-log.log')
+            res.send({ 'errcocde': 0, 'message': 'Create Successfully!', 'data': students });
+        });
+    }
+}
+exports.demo = (req, res) => {
+    console.log("Student Demo");
+    console.log("token " + req.headers.token);
+    console.log("params " + req.params.studentnum);
+    res.send({ "err": 200, "Message": "Success full" });
+}
+exports.token = (req, res) => {
+    console.log("header");
+    var token = req.headers.tokenapi;
+    console.log("token " + req.headers.tokenapi);
+    res.send({ "err": 200, "Message": "Success fulldfdfdf", "token: ": token });
+}
+const json2Array = function(result, fields) {
+    let out = [];
+    let temp = [];
+    // Create headers array
+    fields.forEach(item => {
+        temp.push(item.name)
+    });
+    // temp array works as column headers in .xlsx file
+    out.push(temp)
+
+    result.forEach(item => {
+        out.push([item.id, item.name, item.phone, item.address, item.email])
+    })
+    return out;
+}

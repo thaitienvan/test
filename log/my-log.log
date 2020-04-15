@@ -1,0 +1,5 @@
+2020.03.21, 10:06:31.0531 -> Student Request {"name":"demo luc4h","address":"tphcm","phone":"098765"}
+2020.03.24, 08:27:19.0361 -> Student Request {"name":"demo lucelastichsearch","address":"tphcm","phone":"098765"}
+2020.03.24, 08:27:19.0384 -> Student Response {"fieldCount":0,"affectedRows":1,"insertId":25,"serverStatus":2,"warningCount":1,"message":"","protocol41":true,"changedRows":0}
+2020.03.24, 08:39:56.0958 -> Student Request {"name":"demo lucelastichsearch12355","address":"tphcm","phone":"098765","dob":"2020-03-24T08:39:56.952Z"} - Student Response {"fieldCount":0,"affectedRows":1,"insertId":26,"serverStatus":2,"warningCount":1,"message":"","protocol41":true,"changedRows":0}
+2020.03.24, 09:05:57.0165 -> Student Request {"name":"demo lucelastichsearch12355","address":"tphcm","phone":"098765","dob":"2020-03-24T09:05:57.161Z"} - Student Response {"fieldCount":0,"affectedRows":1,"insertId":27,"serverStatus":2,"warningCount":1,"message":"","protocol41":true,"changedRows":0}
