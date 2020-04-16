@@ -109,3 +109,18 @@ exports.abc = (req, res) => {
 exports.abcef = (req, res) => {
     console.log("abcef");
 }
+exports.demoabc = (req, res) => {
+    console.log("abcef");
+}
+exports.accountDelete = (req, res) => {
+    var id = req.params.id;
+    Account.delete(id, (err, result) => {
+        if (err)
+            return res.send({ err: 200, 'message': 'Something Error' });
+        if (result.affectedRows === 0) {
+            return res.send({ err: 300, 'message': 'Data connot found', data: result });
+        }
+        return res.send({ err: 0, 'message': 'Successfully', data: result });
+
+    });
+}

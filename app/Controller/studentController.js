@@ -131,3 +131,11 @@ exports.abc = (req, res) => {
 exports.abcef = (req, res) => {
     console.log("abcef");
 }
+exports.studentDelete = (req, res) => {
+    var id = req.params.id;
+    Student.deleteStudent(id, (err, student) => {
+        if (err)
+            return res.json({ err: 200, 'message': 'Some thing error!' });
+        return res.json({ err: 0, 'message': "Delete successful", data: student });
+    })
+}
