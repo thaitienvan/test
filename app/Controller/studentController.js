@@ -1,31 +1,81 @@
-var Student = require('../Model/studentModel.js');
-const log = require('log-to-file');
-
-exports.list_all_student = (req, res) => {
-    if (!req.query.limit || !req.query.offset) {
-        req.query.limit = 100;
-        req.query.offset = 0;
-    }
-    Student.getAllStudent(Number(req.query.limit), Number(req.query.offset), (err, students) => {
-        if (err) {
-            res.send(err);
+var Account = require('../Model/accountModel.js');
+var jwt = require('jsonwebtoken');
+exports.login = (req, res) => {
+    let { username, password } = req.body;
+    Account.login(username, password, (err, account) => {
+        if (err)
+            res.send({ 'err': 4000, 'message': 'Username not exits' });
+        if (account.length == 0) {
+            res.send({ 'err': 4000, 'message': 'Accountname or password not correct!', 'data': {} });
         } else {
-            res.send({ "err": 0, "message": "", "data": students });
+            var acc = account[0];
+            var token_auth = jwt.sign({ id: acc.id }, 'abcs', {
+                expiresIn: 10 // expires in 24 hours
+            });
+            //res.send({ 'err': 200, 'message': 'Login Successful', 'data': account[0] });
+            Account.getTokenByAccountId(acc.id, (err, accToken) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    var createddate = new Date();
+                    var cur_date = new Date();
+                    cur_date.setMinutes(cur_date.getMinutes() + 5);
+                    var exprieddate = cur_date;
+                    var account_token = { 'token': token_auth, 'createddate': createddate, 'exprieddate': exprieddate, 'accountid': acc.id };
+                    //insert token if not exist
+                    if (accToken.length == 0) {
+                        Account.insertToken(account_token, (err, status) => {
+                            if (err)
+                                res.send(err);
+                            else {
+                                res.send({ 'err': 0, 'Message': 'Login Successfully.', 'data': { 'token': token_auth } });
+                            }
+                        });
+                    } else {
+                        //update token
+                        Account.updateToken(account_token, (err, status) => {
+                            if (err)
+                                res.send(err);
+                            else {
+                                res.send({ 'err': 0, 'Message': 'Login Successfully.', 'data': { 'token': token_auth } });
+                            }
+
+                        });
+                    }
+                }
+            });
         }
 
     });
-};
-exports.create_student = (req, res) => {
-    let { name, address, phone } = req.body;
-    if (!name || !address || !phone) {
-        res.send({ 'errcocde': 9999, 'message': 'Missing params!', 'data': {} });
+}
+exports.authentication = (req, res, next) => {
+    var authorization = req.headers['authorization'];
+    if (!authorization) {
+        res.send({ 'err': 400, 'message': "User Unauthorized!" });
     } else {
-        Student.createStudent(req.body, (err, students) => {
-            if (err)
-                res.send(err);
-            log(`Student Request ${JSON.stringify(req.body)} - Student Response ${JSON.stringify(students)}`, './log/my-log.log')
-            res.send({ 'errcocde': 0, 'message': 'Create Successfully!', 'data': students });
-        });
+        var auths = authorization.split(" ");
+        let bearer = auths[0];
+        let token = auths[1];
+        if (auths.length != 2 || bearer.trim().toLowerCase() != 'bearer') {
+            res.send({ 'err': 400, 'message': "User Unauthorized!" });
+        } else {
+            Account.getToken(token, (err, rows) => {
+                if (err) {
+                    res.send(err);
+                }
+                if (rows.length == 0) {
+                    res.send({ 'err': 400, 'message': "User Unauthorized!" });
+                } else {
+                    var acc_token = rows[0];
+                    var cur_date = new Date();
+                    if (cur_date >= acc_token.createddate && cur_date <= acc_token.exprieddate) {
+                        next();
+                    } else {
+                        res.send({ 'err': 400, 'message': "Token expried!" });
+                    }
+                }
+            });
+        }
     }
 };
 exports.studentdetail = (req, res) => {
