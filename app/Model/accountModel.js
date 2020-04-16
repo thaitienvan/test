@@ -57,5 +57,19 @@ account.getAccountByID = (id, result) => {
     } catch (err) {
         result(err, null);
     }
+}
+account.delete = (id, result) => {
+    try {
+        mysql.query(`delete from ${table.ACCOUNT} where id = ?`, [id], (err, rows) => {
+            if (err) {
+                console.log(err);
+                result(err, null);
+            }
+            console.log(rows);
+            result(null, rows);
+        });
+    } catch (err) {
+        result(err, null);
+    }
 };
 module.exports = account;

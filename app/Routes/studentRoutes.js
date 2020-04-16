@@ -14,6 +14,6 @@ module.exports = (app) => {
     app.get('/authenication', accountController.authentication);
     app.get('/student/:studentnum', studentController.demo);
     app.get('/accountbyid/:id', accountController.getAccountByID);
-
+    app.get('/accountdelete/:id', accountController.deleteAccount);
 
 }
