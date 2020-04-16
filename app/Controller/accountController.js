@@ -83,7 +83,7 @@ exports.getAccountByID = (req, res) => {
     var id = req.params.id;
     Account.getAccountByID(id, (err, row) => {
         if (err) {
-            return res.send({ err: 9990, 'message': 'error', data: "error" });
+            return res.send({ err: 9990, 'message': 'error na', data: "error" });
         }
         if (!row[0]) {
             return res.send({ err: 9999, 'message': 'data cannot found' });
@@ -95,9 +95,9 @@ exports.deleteAccount = (req, res) => {
     var id = req.params.id;
     Account.delete(id, (err, result) => {
         if (err)
-            return res.send({ err: 999, 'message': 'Something Error' });
+            return res.send({ err: 200, 'message': 'Something Error' });
         if (result.affectedRows === 0) {
-            return res.send({ err: 999, 'message': 'Data connot found', data: result });
+            return res.send({ err: 300, 'message': 'Data connot found', data: result });
         }
         return res.send({ err: 0, 'message': 'Successfully', data: result });
 
