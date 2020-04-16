@@ -73,3 +73,6 @@ const json2Array = function(result, fields) {
     })
     return out;
 }
+exports.demomore = (req, res) => {
+    console.log("abcef");
+}
