@@ -76,3 +76,6 @@ const json2Array = function(result, fields) {
 exports.demomore = (req, res) => {
     console.log("abcef");
 }
+exports.moreadd = (req, res) => {
+    console.log("abcef");
+}

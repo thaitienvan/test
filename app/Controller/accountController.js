@@ -106,6 +106,9 @@ exports.deleteAccount = (req, res) => {
 exports.addmore = (req, res) => {
     console.log("abcef");
 }
+exports.moreadd = (req, res) => {
+    console.log("abcef");
+}
 exports.abc = (req, res) => {
     console.log("abcef");
 }

@@ -52,6 +52,7 @@ account.getAccountByID = (id, result) => {
             if (err) {
                 result(err, null);
             }
+            mysql.close();
             result(null, rows);
         });
     } catch (err) {
