@@ -78,3 +78,16 @@ exports.authentication = (req, res, next) => {
         }
     }
 };
+
+exports.getAccountByID = (req, res) => {
+    var id = req.params.id;
+    Account.getAccountByID(id, (err, row) => {
+        if (err) {
+            return res.send({ err: 9990, 'message': 'error', data: "error" });
+        }
+        if (!row[0]) {
+            return res.send({ err: 9999, 'message': 'data cannot found' });
+        }
+        return res.send({ err: 0, 'message': 'Successfull', data: row[0] });
+    });
+}

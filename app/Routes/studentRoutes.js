@@ -9,8 +9,11 @@ module.exports = (app) => {
     app.get('/studentDel/:id', studentController.deleteStudent);
     //app.post('/student', accountController.authentication, studentController.create_student);
     app.post('/student', studentController.create_student);
+    app.post('/tokenabc', studentController.token);
+    /// account
     app.get('/authenication', accountController.authentication);
     app.get('/student/:studentnum', studentController.demo);
-    app.post('/tokenabc', studentController.token);
+    app.get('/accountbyid/:id', accountController.getAccountByID);
+
 
 }

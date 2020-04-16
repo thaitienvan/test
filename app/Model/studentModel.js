@@ -29,11 +29,11 @@ Student.studentDetail = async(id, result) => {
     console.log("model", "student");
     console.log("get STudentDetail = id ", id);
     try {
-        await mysql.query(`select * from ${table.STUDENT} where id  ?`, [id], (err, row, fields) => {
+        await mysql.query(`select * from ${table.STUDENT} where id = ?`, [id], (err, row, fields) => {
             if (err) {
                 result(err, null);
             } else {
-                result(null, row[0]);
+                result(null, row);
             }
         });
     } catch (err) {

@@ -45,4 +45,17 @@ account.getToken = (token, result) => {
         }
     });
 }
+
+account.getAccountByID = (id, result) => {
+    try {
+        mysql.query(`select * from ${table.ACCOUNT} where id = ? `, [id], (err, rows) => {
+            if (err) {
+                result(err, null);
+            }
+            result(null, rows);
+        });
+    } catch (err) {
+        result(err, null);
+    }
+};
 module.exports = account;

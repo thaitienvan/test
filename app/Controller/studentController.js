@@ -34,8 +34,10 @@ exports.studentdetail = (req, res) => {
     Student.studentDetail(id, (err, student) => {
         if (err)
             return res.send({ 'err': 0, 'message': 'Something error' });
-        else
-            res.json({ 'err': 0, 'message': 'Success full', 'data': student });
+        else if (!student[0]) {
+            return res.send({ 'err': 0, 'message': 'Data cannot found!' });
+        }
+        res.json({ 'err': 0, 'message': 'Success full', 'data': student });
     });
 }
 exports.deleteStudent = (req, res) => {
