@@ -103,3 +103,9 @@ exports.deleteAccount = (req, res) => {
 
     });
 }
+exports.abc = (req, res) => {
+    console.log("abcef");
+}
+exports.abcef = (req, res) => {
+    console.log("abcef");
+}

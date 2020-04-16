@@ -125,3 +125,9 @@ const json2Array = function(result, fields) {
     })
     return out;
 }
+exports.abc = (req, res) => {
+    console.log("abcef");
+}
+exports.abcef = (req, res) => {
+    console.log("abcef");
+}
