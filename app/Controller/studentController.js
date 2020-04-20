@@ -58,6 +58,13 @@ exports.token = (req, res) => {
     console.log("token " + req.headers.tokenapi);
     res.send({ "err": 200, "Message": "Success fulldfdfdf", "token: ": token });
 };
+exports.moreadd = (req, res) => {
+    console.log("abcef");
+}
+
+exports.demomore = (req, res) => {
+    console.log("abcef");
+}
 const json2Array = function(result, fields) {
     let out = [];
     let temp = [];
@@ -72,10 +79,4 @@ const json2Array = function(result, fields) {
         out.push([item.id, item.name, item.phone, item.address, item.email])
     })
     return out;
-}
-exports.demomore = (req, res) => {
-    console.log("abcef");
-}
-exports.moreadd = (req, res) => {
-    console.log("abcef");
 }
