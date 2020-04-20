@@ -16,4 +16,6 @@ module.exports = (app) => {
     app.get('/accountbyid/:id', accountController.getAccountByID);
     app.get('/accountdelete/:id', accountController.deleteAccount);
 
+    app.get('/addmore', accountController.addmore);
+
 }

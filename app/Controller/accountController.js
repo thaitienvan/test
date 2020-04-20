@@ -104,7 +104,7 @@ exports.deleteAccount = (req, res) => {
     });
 }
 exports.addmore = (req, res) => {
-    console.log("abcef");
+    return res.send({ "err": 0, "message": "thaitien" });
 }
 exports.moreadd = (req, res) => {
     console.log("abcef");
