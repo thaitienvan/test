@@ -13,7 +13,7 @@
     "body-parser": "^1.19.0",
     "elastic-apm-node": "^3.5.0",
     "exceljs": "^3.8.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "log-to-file": "^2.0.2",
     "moment": "^2.24.0",
